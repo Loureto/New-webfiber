@@ -26,3 +26,31 @@ h1 {
   font-weight: 600;
   color: #f4f4f5;
 }
+
+a {
+  font-size: 0.875rem;
+  line-height: 20px;
+  font-weight: 400;
+  color: #006fee;
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 28px;
+  font-weight: 400;
+  color: #a1a1aa;
+}
+
+.txt-regular {
+  font-size: 0.875rem;
+  line-height: 20px;
+  font-weight: 400;
+  color: #fafafa;
+}
+
+.txt-medium {
+  font-size: 0.875rem;
+  line-height: 20px;
+  font-weight: 500;
+  color: #fafafa;
+}
