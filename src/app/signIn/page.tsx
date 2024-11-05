@@ -5,7 +5,7 @@ export const metadata = {
 }
 
 const SignInPage = componentWrapper(
-  import('@/modules/auth').then((module) => module.SignInView)
+  import('@/modules/auth').then((module) => module.SignInViewModel)
 )
 
 export default SignInPage
