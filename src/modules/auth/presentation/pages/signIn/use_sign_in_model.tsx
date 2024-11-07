@@ -23,8 +23,8 @@ export const useSignInModel = ({
   storage
 }: SignInModelProps) => {
   const router = useRouter()
+  const [mounted, setMounted] = React.useState(false)
   const [loading, setLoading] = React.useState<boolean>(false)
-  const [script, setScript] = React.useState<boolean>(true)
 
   const validations = useForm<SignInValidation>({
     mode: 'onBlur',
@@ -48,9 +48,9 @@ export const useSignInModel = ({
   }
 
   return {
-    script,
+    mounted,
     loading,
-    setScript,
+    setMounted,
     handleFormAction,
     ...validations
   }

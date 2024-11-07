@@ -9,16 +9,16 @@ import { useEffect } from 'react'
 export const SignInView = (methods: ReturnType<typeof useSignInModel>) => {
   const {
     control,
-    script,
+    mounted,
     loading,
-    setScript,
+    setMounted,
     handleSubmit,
     handleFormAction
   } = methods
 
   useEffect(() => {
-    setScript(false)
-  }, [setScript])
+    setMounted(true)
+  }, [setMounted])
 
   return (
     <div className="flex h-screen w-full items-center justify-center">
@@ -73,7 +73,7 @@ export const SignInView = (methods: ReturnType<typeof useSignInModel>) => {
           <Button
             type="submit"
             color="primary"
-            disabled={script || loading}
+            disabled={!mounted || loading}
             isLoading={loading}
           >
             Log In
