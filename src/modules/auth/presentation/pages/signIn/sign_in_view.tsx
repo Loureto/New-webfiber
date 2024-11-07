@@ -3,10 +3,22 @@
 import Link from 'next/link'
 import { Controller } from 'react-hook-form'
 import { Button, Checkbox, Input } from '@nextui-org/react'
-import { SignInModel } from './sign_in_model'
+import { useSignInModel } from './use_sign_in_model'
+import { useEffect } from 'react'
 
-export const SignInView = (methods: ReturnType<typeof SignInModel>) => {
-  const { control, handleSubmit, handleFormAction } = methods
+export const SignInView = (methods: ReturnType<typeof useSignInModel>) => {
+  const {
+    control,
+    script,
+    loading,
+    setScript,
+    handleSubmit,
+    handleFormAction
+  } = methods
+
+  useEffect(() => {
+    setScript(false)
+  }, [setScript])
 
   return (
     <div className="flex h-screen w-full items-center justify-center">
@@ -58,7 +70,12 @@ export const SignInView = (methods: ReturnType<typeof SignInModel>) => {
             </Link>
           </div>
 
-          <Button type="submit" color="primary">
+          <Button
+            type="submit"
+            color="primary"
+            disabled={script || loading}
+            isLoading={loading}
+          >
             Log In
           </Button>
 
