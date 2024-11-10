@@ -11,16 +11,19 @@ import {
   signInDefaultValues,
   signInValidation,
   SignInValidation
-} from '../../validations'
+} from '../../../validations'
+import { SignUpStore } from '../../store'
 
 interface SignInModelProps {
   signInUsecase: ISignInUsecase
   storage: CookieStorageAdapter
+  store: SignUpStore
 }
 
 export const useSignInModel = ({
   signInUsecase,
-  storage
+  storage,
+  store
 }: SignInModelProps) => {
   const router = useRouter()
   const [mounted, setMounted] = React.useState(false)
@@ -48,10 +51,11 @@ export const useSignInModel = ({
   }
 
   return {
+    ...validations,
+    ...store,
     mounted,
     loading,
     setMounted,
-    handleFormAction,
-    ...validations
+    handleFormAction
   }
 }

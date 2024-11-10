@@ -4,7 +4,13 @@ import {
   AuthRepository,
   IAuthRemoteDataSource
 } from './data'
-import { IAuthRepository, ISignInUsecase, SignInUsecase } from './domain'
+import {
+  IAuthRepository,
+  ISignInUsecase,
+  ISignUpUsecase,
+  SignInUsecase,
+  SignUpUsecase
+} from './domain'
 
 export const makeAuthRemoteDataSource = (): IAuthRemoteDataSource => {
   return new AuthRemoteDataSource(makeApiBaseUrl(), makeAxiosHttpClient())
@@ -18,4 +24,9 @@ export const makeAuthRepository = (): IAuthRepository => {
 export const makeSignInUsecase = (): ISignInUsecase => {
   const repository = makeAuthRepository()
   return new SignInUsecase(repository)
+}
+
+export const makeSignUpUsecase = (): ISignUpUsecase => {
+  const repository = makeAuthRepository()
+  return new SignUpUsecase(repository)
 }

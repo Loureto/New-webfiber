@@ -1,6 +1,8 @@
 import { HttpStatusCode } from '@/core'
 import { IAuthRemoteDataSource } from '../datasources'
 import {
+  CreateAccountCompany,
+  ForbiddenError,
   IAuthRepository,
   InvalidCredentialsError,
   UnexpectedError,
@@ -18,6 +20,19 @@ export class AuthRepository implements IAuthRepository {
         return response.body
       case HttpStatusCode.UNAUTHORIZED:
         throw new InvalidCredentialsError()
+      default:
+        throw new UnexpectedError()
+    }
+  }
+
+  async signUp(params: CreateAccountCompany.Params): Promise<boolean> {
+    const response = await this.datasource.signUp(params)
+
+    switch (response.statusCode) {
+      case HttpStatusCode.CREATED:
+        return !!response.body
+      case HttpStatusCode.FORBIDDEN:
+        throw new ForbiddenError()
       default:
         throw new UnexpectedError()
     }

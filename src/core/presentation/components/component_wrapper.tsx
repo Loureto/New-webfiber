@@ -1,12 +1,12 @@
-import { CircularProgress } from '@nextui-org/progress'
 import dynamic from 'next/dynamic'
+import { ShurikenIcon } from '../assets'
 
 export const componentWrapper = (importedComponent: any) =>
   dynamic(() => importedComponent, {
     ssr: false,
     loading: () => (
       <div className="flex h-screen w-full items-center justify-center">
-        <CircularProgress size="lg" aria-label="Loading..." />
+        <ShurikenIcon className="animate-spin" />
       </div>
     )
   })

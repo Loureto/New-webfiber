@@ -1,16 +1,19 @@
 'use client'
 
-import Link from 'next/link'
-import { Controller } from 'react-hook-form'
+import { ShurikenIcon } from '@/core'
 import { Button, Checkbox, Input } from '@nextui-org/react'
-import { useSignInModel } from './use_sign_in_model'
+import Link from 'next/link'
 import { useEffect } from 'react'
+import { Controller } from 'react-hook-form'
+import { useSignInModel } from './sign_in_model'
 
 export const SignInView = (methods: ReturnType<typeof useSignInModel>) => {
   const {
     control,
     mounted,
     loading,
+    reset,
+    setValue,
     setMounted,
     handleSubmit,
     handleFormAction
@@ -18,11 +21,12 @@ export const SignInView = (methods: ReturnType<typeof useSignInModel>) => {
 
   useEffect(() => {
     setMounted(true)
-  }, [setMounted])
+  }, [setMounted, setValue])
 
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <div className="w-[496px] rounded-large bg-zinc-900 px-6 py-10">
+        <ShurikenIcon className="mx-auto mb-4" />
         <section className="mb-10 text-center">
           <h1 className="mb-2">Welcome Back</h1>
           <p className="subtitle">Log in to your account to continue</p>
@@ -80,7 +84,16 @@ export const SignInView = (methods: ReturnType<typeof useSignInModel>) => {
           </Button>
 
           <p className="txt-regular text-center">
-            Need to create an account? <Link href="/signUp">Sign Up</Link>
+            Need to create an account?{' '}
+            <Link
+              onClick={() => {
+                reset()
+                window.localStorage.clear()
+              }}
+              href="/signUp"
+            >
+              Sign Up
+            </Link>
           </p>
         </form>
       </div>
