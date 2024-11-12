@@ -2,7 +2,7 @@ import * as React from 'react'
 
 type Props = React.SVGProps<SVGSVGElement>
 
-export function SvgComponent(props: Props) {
+export function FilesIcon(props: Props) {
   return (
     <svg
       width={20}
