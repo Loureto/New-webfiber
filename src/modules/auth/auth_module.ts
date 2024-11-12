@@ -12,11 +12,11 @@ import {
   SignUpUsecase
 } from './domain'
 
-export const makeAuthRemoteDataSource = (): IAuthRemoteDataSource => {
+const makeAuthRemoteDataSource = (): IAuthRemoteDataSource => {
   return new AuthRemoteDataSource(makeApiBaseUrl(), makeAxiosHttpClient())
 }
 
-export const makeAuthRepository = (): IAuthRepository => {
+const makeAuthRepository = (): IAuthRepository => {
   const datasource = makeAuthRemoteDataSource()
   return new AuthRepository(datasource)
 }

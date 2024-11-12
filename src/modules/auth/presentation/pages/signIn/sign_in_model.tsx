@@ -42,7 +42,7 @@ export const useSignInModel = ({
 
       storage.set('account', response)
       notify('Logged in successfully!', 'success')
-      router.push('/dashboard')
+      router.replace('/dashboard')
     } catch (error) {
       const _error = error as Error
       notify(_error.message)
