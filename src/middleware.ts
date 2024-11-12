@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const publicRoute = ['/sign-in', '/sign-up']
+const publicRoute = ['/signIn', '/signUp']
 
 export default function middleware(request: NextRequest) {
   const account = request.cookies.get('account')?.value
@@ -23,8 +23,8 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/sign-in',
-    '/sign-up',
+    '/signIn/:path*',
+    '/signUp/:path*',
     '/auth/:path*',
     '/dashboard/:path*',
     '/orders/:path*',
