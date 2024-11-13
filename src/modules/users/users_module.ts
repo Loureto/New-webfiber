@@ -1,4 +1,4 @@
-import { makeApiBaseUrl, makeAxiosHttpClient } from '@/core'
+import { makeApiBaseUrl, makeAuthorizeHttpClientDecorator } from '@/core'
 import {
   IUsersRemoteDataSource,
   UsersRemoteDataSource,
@@ -15,7 +15,10 @@ import {
 } from './domain'
 
 const makeUserRemoteDataSource = (): IUsersRemoteDataSource => {
-  return new UsersRemoteDataSource(makeApiBaseUrl(), makeAxiosHttpClient())
+  return new UsersRemoteDataSource(
+    makeApiBaseUrl(),
+    makeAuthorizeHttpClientDecorator()
+  )
 }
 
 const makeUserRepository = (): IUsersRepository => {

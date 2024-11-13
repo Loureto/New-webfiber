@@ -4,14 +4,16 @@ import {
   IUsersRepository,
   ResetPassword,
   UnexpectedError,
-  UserList
+  UserAccountInfo
 } from '../../domain'
 import { IUsersRemoteDataSource } from '../datasources'
 
 export class UsersRepository implements IUsersRepository {
   constructor(private readonly datasource: IUsersRemoteDataSource) {}
 
-  async listUsers(params: UserList.Params): Promise<UserList.Result> {
+  async listUsers(
+    params: UserAccountInfo.Params
+  ): Promise<UserAccountInfo.Result> {
     const response = await this.datasource.listUsers(params)
 
     switch (response.statusCode) {

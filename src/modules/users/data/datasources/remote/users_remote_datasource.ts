@@ -1,8 +1,14 @@
 import { HttpResponse, IHttpClient } from '@/core'
-import { CreateUser, ResetPassword, UserList } from '@/modules/users/domain'
+import {
+  CreateUser,
+  ResetPassword,
+  UserAccountInfo
+} from '@/modules/users/domain'
 
 export interface IUsersRemoteDataSource {
-  listUsers(params: UserList.Params): Promise<HttpResponse<UserList.Result>>
+  listUsers(
+    params: UserAccountInfo.Params
+  ): Promise<HttpResponse<UserAccountInfo.Result>>
 
   createUser(params: CreateUser.Params): Promise<HttpResponse<boolean>>
 
@@ -16,8 +22,8 @@ export class UsersRemoteDataSource implements IUsersRemoteDataSource {
   ) {}
 
   async listUsers(
-    params: UserList.Params
-  ): Promise<HttpResponse<UserList.Result>> {
+    params: UserAccountInfo.Params
+  ): Promise<HttpResponse<UserAccountInfo.Result>> {
     return await this.httpClient.request({
       url: `${this.baseUrl}/users/list?page=${params.page}&limit=${params.limit}`,
       method: 'GET'

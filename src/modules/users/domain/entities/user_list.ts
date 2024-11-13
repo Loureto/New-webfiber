@@ -23,11 +23,19 @@ export class UserList {
   }
 }
 
-export namespace UserList {
+export class UserAccountInfo {
+  user: UserList[]
+
+  constructor(user: UserList[]) {
+    this.user = user
+  }
+}
+
+export namespace UserAccountInfo {
   export type Params = {
     page: number
     limit: number
   }
 
-  export type Result = UserList[] | undefined
+  export type Result = UserAccountInfo | undefined
 }

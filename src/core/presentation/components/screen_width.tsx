@@ -4,7 +4,7 @@ import { WarningIcon } from '../assets'
 
 export const ScreenWidth = () => {
   return (
-    <div className="absolute top-0 z-[999] flex h-screen w-full items-center justify-center md:hidden">
+    <div className="fixed top-0 z-[999] flex h-screen w-full items-center justify-center lg:hidden">
       <div className="absolute z-[999] flex flex-col items-center gap-4">
         <WarningIcon />
         <h1>Your screen is too small</h1>

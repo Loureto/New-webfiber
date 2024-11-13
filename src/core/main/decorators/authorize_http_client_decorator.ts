@@ -8,7 +8,7 @@ export class AuthorizeHttpClientDecorator implements IHttpClient {
 
   async request(data: HttpRequest): Promise<HttpResponse> {
     const account = this.getStorage.get('account')
-    const token = JSON.parse(account || '{}')?.accessToken
+    const token = JSON.parse(account || '{}')?.access_token
 
     if (token) {
       Object.assign(data, {

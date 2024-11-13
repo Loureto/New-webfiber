@@ -1,16 +1,15 @@
 'use client'
 
-import { Button } from '@nextui-org/button'
-import { DashboardIcon, FolderIcon, TicketIcon, UserIcon } from '../assets'
-import { ButtonNav } from './button_navigation'
-import { usePathname } from 'next/navigation'
 import { CookieStorageAdapter } from '@/core/infra'
+import { Button } from '@nextui-org/button'
+import { usePathname } from 'next/navigation'
+import { DashboardIcon, FolderIcon, UserIcon } from '../assets'
+import { ButtonNav } from './button_navigation'
 
 const routes = [
   { id: 1, name: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
   { id: 2, name: 'Users', path: '/users', icon: <UserIcon /> },
-  { id: 3, name: 'Tickets', path: '/tickets', icon: <TicketIcon /> },
-  { id: 4, name: 'Orders', path: '/orders', icon: <FolderIcon /> }
+  { id: 3, name: 'Orders', path: '/orders', icon: <FolderIcon /> }
 ]
 
 export const SidebarNavigation = () => {
@@ -40,6 +39,7 @@ export const SidebarNavigation = () => {
       <Button
         className="absolute bottom-10 left-6 right-6"
         color="danger"
+        variant="flat"
         onClick={handleLogout}
       >
         Logout
