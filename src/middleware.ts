@@ -28,7 +28,6 @@ export const config = {
     '/auth/:path*',
     '/dashboard/:path*',
     '/orders/:path*',
-    '/tickets/:path*',
     '/users/:path*'
   ]
 }
