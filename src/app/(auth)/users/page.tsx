@@ -1,7 +1,7 @@
 import { componentWrapper } from '@/core'
 
 export const metadata = {
-  title: 'Orders'
+  title: 'Users'
 }
 
 const HomePage = componentWrapper(

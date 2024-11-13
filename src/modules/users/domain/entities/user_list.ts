@@ -24,10 +24,24 @@ export class UserList {
 }
 
 export class UserAccountInfo {
-  user: UserList[]
+  data: UserList[]
+  total: number
+  page: number
+  limit: number
+  totalPages: number
 
-  constructor(user: UserList[]) {
-    this.user = user
+  constructor(
+    data: UserList[],
+    total: number,
+    page: number,
+    limit: number,
+    totalPages: number
+  ) {
+    this.data = data
+    this.total = total
+    this.page = page
+    this.limit = limit
+    this.totalPages = totalPages
   }
 }
 

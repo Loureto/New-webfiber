@@ -8,7 +8,7 @@ interface HomeModelProps {
 }
 
 export const useHomeModel = ({ getUserListUsecase }: HomeModelProps) => {
-  const query = useQuery({
+  const { data: userList, ...query } = useQuery({
     queryKey: ['userList'],
     queryFn: async (): Promise<UserAccountInfo.Result> => {
       return await getUserListUsecase.listUsers({ page: 1, limit: 10 })
@@ -17,5 +17,5 @@ export const useHomeModel = ({ getUserListUsecase }: HomeModelProps) => {
     retry: false
   })
 
-  return { ...query }
+  return { userList, ...query }
 }

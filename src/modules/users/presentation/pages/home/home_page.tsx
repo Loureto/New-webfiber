@@ -24,7 +24,7 @@ interface HomePageProps {
 }
 
 export const HomePage = ({ methods }: HomePageProps) => {
-  const { data, isLoading } = methods
+  const { userList, isLoading } = methods
 
   return (
     <div className="relative flex size-full flex-col">
@@ -49,7 +49,7 @@ export const HomePage = ({ methods }: HomePageProps) => {
         </div>
       </div>
 
-      <p className="txt-regular my-4">Total Users: {data?.user.length}</p>
+      <p className="txt-regular my-4">Total Users: {userList?.data?.length}</p>
 
       <Table
         className="h-full"
@@ -64,7 +64,7 @@ export const HomePage = ({ methods }: HomePageProps) => {
         </TableHeader>
 
         <TableBody
-          items={data?.user || []}
+          items={userList?.data || []}
           isLoading={isLoading}
           loadingContent={
             <ShurikenIcon className="fixed top-1/2 animate-spin" />
@@ -91,9 +91,11 @@ export const HomePage = ({ methods }: HomePageProps) => {
       </Table>
 
       <div className="mt-2 flex w-full items-center justify-between">
-        <p className="txt-regular my-4">0 of {data?.user.length} selected</p>
+        <p className="txt-regular my-4">
+          0 of {userList?.data?.length} selected
+        </p>
 
-        <Pagination total={10} initialPage={1} />
+        <Pagination total={userList?.totalPages || 0} initialPage={1} />
 
         <div>
           <Button className="mr-4">Previous</Button>
