@@ -15,16 +15,20 @@ import {
 } from '@nextui-org/react'
 
 import { ShurikenIcon } from '@/core'
-import { useHomeModel } from './home_model'
-import { UserStatus, UserStatusProps } from '../../components'
 import { MdDelete, MdEdit, MdOutlineAdd } from 'react-icons/md'
+import { UserStatus, UserStatusProps } from '../../components'
+import { useHomeModel } from './home_model'
 
 interface HomePageProps {
   methods: ReturnType<typeof useHomeModel>
 }
 
 export const HomePage = ({ methods }: HomePageProps) => {
-  const { userList, isLoading } = methods
+  const { userList, isLoading, currentPage, setCurrentPage } = methods
+  const totalPages = userList?.totalPages || 0
+  const page = userList?.page || 0
+
+  console.log(currentPage)
 
   return (
     <div className="relative flex size-full flex-col">
@@ -95,11 +99,31 @@ export const HomePage = ({ methods }: HomePageProps) => {
           0 of {userList?.data?.length} selected
         </p>
 
-        <Pagination total={userList?.totalPages || 0} initialPage={1} />
+        <Pagination
+          total={userList?.totalPages || 0}
+          initialPage={currentPage}
+          page={currentPage}
+          onChange={setCurrentPage}
+        />
 
         <div>
-          <Button className="mr-4">Previous</Button>
-          <Button>Next</Button>
+          <Button
+            className="mr-4"
+            isDisabled={page <= 1}
+            onClick={() =>
+              setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
+            }
+          >
+            Previous
+          </Button>
+          <Button
+            isDisabled={page === totalPages}
+            onClick={() =>
+              setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev))
+            }
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>
