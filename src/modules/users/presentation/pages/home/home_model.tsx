@@ -2,22 +2,27 @@
 
 import { IGetUserListUsecase, UserAccountInfo } from '@/modules/users/domain'
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { UserActions } from '../../store'
 
 interface HomeModelProps {
   getUserListUsecase: IGetUserListUsecase
+  store: UserActions
 }
 
-export const useHomeModel = ({ getUserListUsecase }: HomeModelProps) => {
-  const [currentPage, setCurrentPage] = useState(1)
+export const useHomeModel = ({ getUserListUsecase, store }: HomeModelProps) => {
   const { data: userList, ...query } = useQuery({
-    queryKey: ['userList', currentPage],
+    queryKey: ['userList', store.currentPage],
     queryFn: async (): Promise<UserAccountInfo.Result> => {
-      return await getUserListUsecase.listUsers({ page: currentPage, limit: 2 })
+      const response = await getUserListUsecase.listUsers({
+        page: store.currentPage,
+        limit: 2
+      })
+      store.setTotalPages(response.totalPages)
+      return response
     },
     refetchOnWindowFocus: false,
     retry: false
   })
 
-  return { userList, currentPage, setCurrentPage, ...query }
+  return { userList, ...query, ...store }
 }

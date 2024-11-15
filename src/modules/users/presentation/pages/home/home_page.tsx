@@ -6,6 +6,7 @@ import {
   Pagination,
   Select,
   SelectItem,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -24,11 +25,8 @@ interface HomePageProps {
 }
 
 export const HomePage = ({ methods }: HomePageProps) => {
-  const { userList, isLoading, currentPage, setCurrentPage } = methods
-  const totalPages = userList?.totalPages || 0
-  const page = userList?.page || 0
-
-  console.log(currentPage)
+  const { userList, isLoading, currentPage, totalPages, setCurrentPage } =
+    methods
 
   return (
     <div className="relative flex size-full flex-col">
@@ -99,27 +97,34 @@ export const HomePage = ({ methods }: HomePageProps) => {
           0 of {userList?.data?.length} selected
         </p>
 
-        <Pagination
-          total={userList?.totalPages || 0}
-          initialPage={currentPage}
-          page={currentPage}
-          onChange={setCurrentPage}
-        />
+        {totalPages === 0 && isLoading && (
+          <Skeleton className="h-8 w-32 rounded-md" />
+        )}
+        {!(totalPages === 0 && isLoading) && (
+          <Pagination
+            initialPage={1}
+            page={currentPage}
+            total={totalPages}
+            onChange={setCurrentPage}
+          />
+        )}
 
         <div>
           <Button
             className="mr-4"
-            isDisabled={page <= 1}
+            isDisabled={currentPage <= 1}
             onClick={() =>
-              setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
+              setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
             }
           >
             Previous
           </Button>
           <Button
-            isDisabled={page === totalPages}
+            isDisabled={currentPage === totalPages}
             onClick={() =>
-              setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev))
+              setCurrentPage(
+                currentPage < totalPages ? currentPage + 1 : currentPage
+              )
             }
           >
             Next
