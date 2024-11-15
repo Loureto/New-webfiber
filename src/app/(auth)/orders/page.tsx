@@ -4,8 +4,8 @@ export const metadata = {
   title: 'Orders'
 }
 
-const HomePage = componentWrapper(
-  import('@/modules/orders').then((module) => module.HomePage)
+const HomeOrdersPage = componentWrapper(
+  import('@/modules/orders').then((module) => module.HomeOrderViewModel)
 )
 
-export default HomePage
+export default HomeOrdersPage

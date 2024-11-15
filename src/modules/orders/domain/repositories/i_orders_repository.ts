@@ -1,9 +1,11 @@
+import { OrdersList } from '../entities/orders_list'
+
 export interface IOrdersRepository {
-  createOrder: (data: FormData) => Promise<boolean>
+  // createOrder: (data: FormData) => Promise<boolean>
 
-  getOrders: () => Promise<any[]>
+  getOrders: (params: any) => Promise<OrdersList>
 
-  getOrderById: (id: string) => Promise<any[]>
+  getOrderById: (id: string) => Promise<OrdersList>
 
-  //   getOrderByUser: (id: string) => Promise<any>
+  getOrderByUser: (id: string) => Promise<OrdersList>
 }

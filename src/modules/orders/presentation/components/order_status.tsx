@@ -20,8 +20,8 @@ export const OrderStatus = ({ status }: OrderStatusProps) => {
   const lowerCase = status.toLowerCase()
 
   return (
-    <Chip variant="flat" color={colors[lowerCase]}>
-      {status}
+    <Chip className="capitalize" variant="flat" color={colors[lowerCase]}>
+      {status.toLowerCase()}
     </Chip>
   )
 }

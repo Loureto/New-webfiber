@@ -9,13 +9,16 @@ interface HomeModelProps {
   store: UserActions
 }
 
-export const useHomeModel = ({ getUserListUsecase, store }: HomeModelProps) => {
+export const useHomeUserModel = ({
+  getUserListUsecase,
+  store
+}: HomeModelProps) => {
   const { data: userList, ...query } = useQuery({
     queryKey: ['userList', store.currentPage],
     queryFn: async (): Promise<UserAccountInfo.Result> => {
       const response = await getUserListUsecase.listUsers({
         page: store.currentPage,
-        limit: 2
+        limit: 10
       })
       store.setTotalPages(response.totalPages)
       return response

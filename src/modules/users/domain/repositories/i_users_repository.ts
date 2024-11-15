@@ -1,7 +1,7 @@
-import { CreateUser, ResetPassword, UserList } from '../entities'
+import { CreateUser, ResetPassword, UserAccountInfo } from '../entities'
 
 export interface IUsersRepository {
-  listUsers(params: UserList.Params): Promise<UserList.Result>
+  listUsers(params: UserAccountInfo.Params): Promise<UserAccountInfo.Result>
 
   createUser(params: CreateUser.Params): Promise<boolean>
 

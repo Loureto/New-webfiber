@@ -18,13 +18,13 @@ import {
 import { ShurikenIcon } from '@/core'
 import { MdDelete, MdEdit, MdOutlineAdd } from 'react-icons/md'
 import { UserStatus, UserStatusProps } from '../../components'
-import { useHomeModel } from './home_model'
+import { useHomeUserModel } from './home_user_model'
 
 interface HomePageProps {
-  methods: ReturnType<typeof useHomeModel>
+  methods: ReturnType<typeof useHomeUserModel>
 }
 
-export const HomePage = ({ methods }: HomePageProps) => {
+export const HomeUserView = ({ methods }: HomePageProps) => {
   const { userList, isLoading, currentPage, totalPages, setCurrentPage } =
     methods
 
