@@ -1,14 +1,14 @@
 'use client'
 
-import { Button, ButtonProps } from '@nextui-org/button'
 import { cn } from '@nextui-org/theme'
 import { useRouter } from 'next/navigation'
 
-type ButtonNavProps = ButtonProps & {
+type ButtonNavProps = React.ComponentProps<'div'> & {
   text: string
   icon?: React.ReactNode
   current?: boolean
   path: string
+  expanded?: boolean
 }
 
 export const ButtonNav = ({
@@ -17,24 +17,24 @@ export const ButtonNav = ({
   icon,
   path = '',
   current = false,
+  expanded = true,
   ...props
 }: ButtonNavProps) => {
   const router = useRouter()
 
   return (
-    <Button
+    <div
       className={cn(
-        'group justify-start gap-2 bg-transparent px-6 font-normal hover:bg-zinc-800 hover:font-bold hover:text-white',
+        'flex cursor-pointer items-center overflow-hidden rounded-lg p-3 transition-all duration-300 hover:bg-zinc-800 hover:font-bold hover:text-white',
+        expanded ? 'gap-4 px-6 text-sm' : 'flex-col gap-2 text-xs',
         current && 'bg-zinc-800 font-bold text-white',
         className
       )}
       onClick={() => router.push(path)}
-      variant="flat"
-      size="lg"
       {...props}
     >
-      {icon && icon}
+      {icon && <span>{icon}</span>}
       {text && text}
-    </Button>
+    </div>
   )
 }
