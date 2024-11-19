@@ -5,24 +5,56 @@ import { cn } from '@nextui-org/theme'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { MdClose, MdMenu } from 'react-icons/md'
 import {
-  DashboardIcon,
-  FolderIcon,
-  GraphicPizzaIcon,
-  LogoutIcon,
-  NinjaIcon,
-  UserIcon
-} from '../assets'
+  LuCreditCard,
+  LuFileText,
+  LuLayoutDashboard,
+  LuLogOut,
+  LuPieChart,
+  LuSettings,
+  LuUserCircle
+} from 'react-icons/lu'
+import { MdClose, MdMenu } from 'react-icons/md'
+import { NinjaIcon } from '../assets'
 import { ButtonNav } from './button_navigation'
 
 const routes = [
-  { id: 1, name: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
-  { id: 2, name: 'Users', path: '/users', icon: <UserIcon /> },
-  { id: 3, name: 'Orders', path: '/orders', icon: <FolderIcon /> },
-  { id: 4, name: 'Reports', path: '#', icon: <GraphicPizzaIcon /> },
-  { id: 5, name: 'Payments', path: '#', icon: <GraphicPizzaIcon /> },
-  { id: 5, name: 'Configuration', path: '#', icon: <GraphicPizzaIcon /> }
+  {
+    id: 1,
+    name: 'Dashboard',
+    path: '/dashboard',
+    icon: <LuLayoutDashboard strokeWidth={2} size={20} />
+  },
+  {
+    id: 2,
+    name: 'Users',
+    path: '/users',
+    icon: <LuUserCircle strokeWidth={2} size={20} />
+  },
+  {
+    id: 2,
+    name: 'Orders',
+    path: '/orders',
+    icon: <LuFileText strokeWidth={2} size={20} />
+  },
+  {
+    id: 4,
+    name: 'Reports',
+    path: '#',
+    icon: <LuPieChart strokeWidth={2} size={20} />
+  },
+  {
+    id: 5,
+    name: 'Payments',
+    path: '#',
+    icon: <LuCreditCard strokeWidth={2} size={20} />
+  },
+  {
+    id: 5,
+    name: 'Configuration',
+    path: '#',
+    icon: <LuSettings strokeWidth={2} size={20} />
+  }
 ]
 
 export const SidebarNavigation = () => {
@@ -83,12 +115,12 @@ export const SidebarNavigation = () => {
 
       <button
         className={cn(
-          'flex cursor-pointer items-center overflow-hidden rounded-lg bg-danger/15 p-3 font-bold text-danger transition-all duration-300',
+          'flex cursor-pointer items-center overflow-hidden rounded-lg bg-danger/50 p-3 text-white transition-all duration-300',
           isExpanded ? 'gap-4 px-6 text-sm' : 'flex-col gap-2 text-xs'
         )}
         onClick={handleLogout}
       >
-        <LogoutIcon />
+        <LuLogOut strokeWidth={2} size={20} />
         Logout
       </button>
     </motion.div>

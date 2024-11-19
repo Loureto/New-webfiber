@@ -25,15 +25,15 @@ export const ButtonNav = ({
   return (
     <div
       className={cn(
-        'flex cursor-pointer items-center overflow-hidden rounded-lg p-3 transition-all duration-300 hover:bg-zinc-800 hover:font-bold hover:text-white',
-        expanded ? 'gap-4 px-6 text-sm' : 'flex-col gap-2 text-xs',
+        'flex cursor-pointer flex-wrap items-center overflow-hidden rounded-lg p-3 transition-all duration-500 hover:bg-zinc-800 hover:font-bold hover:text-white',
+        expanded ? 'gap-4 px-6 text-sm' : 'justify-center gap-2 text-xs',
         current && 'bg-zinc-800 font-bold text-white',
         className
       )}
       onClick={() => router.push(path)}
       {...props}
     >
-      {icon && <span>{icon}</span>}
+      {icon && <span className={!expanded ? 'mr-px' : ''}>{icon}</span>}
       {text && text}
     </div>
   )
