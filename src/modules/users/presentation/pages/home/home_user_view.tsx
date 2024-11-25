@@ -19,8 +19,8 @@ import {
 import { ShurikenIcon } from '@/core'
 import { MdDelete, MdEdit, MdOutlineAdd } from 'react-icons/md'
 import { UserStatus, UserStatusProps } from '../../components'
+import { CreateUserViewModel } from '../createUser'
 import { useHomeUserModel } from './home_user_model'
-import { CreateUserView } from '../createUser'
 
 interface HomePageProps {
   methods: ReturnType<typeof useHomeUserModel>
@@ -30,7 +30,7 @@ export const HomeUserView = ({ methods }: HomePageProps) => {
   const { userList, isLoading, currentPage, totalPages, setCurrentPage } =
     methods
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 
   return (
     <>
@@ -141,7 +141,12 @@ export const HomeUserView = ({ methods }: HomePageProps) => {
           </div>
         </div>
       </div>
-      <CreateUserView isOpen={isOpen} onOpenChange={onOpenChange} />
+
+      <CreateUserViewModel
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onClose={onClose}
+      />
     </>
   )
 }
